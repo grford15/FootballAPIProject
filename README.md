@@ -1,4 +1,4 @@
-# FootballAPIProject
+# UFC API Project
 
 ## Key learning to practise and/or revise:
 
