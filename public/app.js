@@ -1,6 +1,7 @@
 const app = function(){
   const url = 'http://ufc-data-api.ufc.com/api/v1/us/';
   const fighterURL = 'http://ufc-data-api.ufc.com/api/v1/us/fighters';
+  makeRequest(fighterURL, requestComplete);
 }
 
 const makeRequest = function(url, callback){
@@ -11,10 +12,21 @@ const makeRequest = function(url, callback){
 };
 
 const requestComplete = function(response){
-  
-
+  if(this.status !== 200) return;
+  const json = this.responseText;
+  fighters = JSON.parse(json);
+  populateSelect(fighters);
 }
 
-window.addEventListener('load', function(){
+const populateSelect = function(fighters){
+  const select = document.getElementById('fighter-menu');
+  fighters.forEach(function(fighter, index){
+    if(fighter.fighter_status === 'Active'){
+    let option = document.createElement('option');
+    option.innerText = fighter.first_name + " " + fighter.last_name;
+    option.value = index;
+    select.appendChild(option);}
+  })
+}
 
-})
+window.addEventListener('load', app)

@@ -1,11 +1,11 @@
-const Fighter = function() {
-
-Fighter.prototype.allFighters(){
-  
-}
-
-Fighter.prototype.findFighter(name){
-
-}
-
-}
+// const Fighter = function() {
+//
+// Fighter.prototype.allFighters(){
+//
+// }
+//
+// Fighter.prototype.findFighter(name){
+//
+// }
+//
+// }
