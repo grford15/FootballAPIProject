@@ -8,12 +8,48 @@ h1{
   font-weight: bold;
 }
 
-h2{
+label{
   font-family: 'Gruppo', cursive;
   font-size: 2em;
+  margin: 5px 5px;
 }
 
 #fighter-menu{
   font-family: 'Nanum Gothic', sans-serif;
   font-size: .9em;
+  margin: 10px 10px;
+  height: fit-content;
+}
+
+#fighter-profile {
+  display: block;
+
+}
+
+#fighter-graph {
+  
+}
+
+.fighterDiv:empty {
+  display: none;
+  border: none;
+}
+
+.fighterDiv {
+  display: flex;
+  font-family: 'Gruppo', cursive;
+  /* border: 1px solid black; */
+}
+
+.fighterDiv h2 {
+  font-size: 2em;
+}
+
+.fighterDiv p {
+  font-size: 1.5em;
+}
+
+
+.fighter-choice {
+  display: flex;
 }

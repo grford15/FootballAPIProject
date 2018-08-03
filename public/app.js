@@ -16,10 +16,11 @@ const requestComplete = function(response){
   if(this.status !== 200) return;
   const json = this.responseText;
   fighters = JSON.parse(json);
-  const activeFighters = _.filter(fighters, ['fighter_status', 'Active'])
+  const activeFighters = _.filter(fighters, {'fighter_status': 'Active'})
   const sortedFigthers = _.sortBy(activeFighters, 'last_name')
   populateSelect(sortedFigthers);
   getFighter(sortedFigthers);
+  MostWins(activeFighters);
 }
 
 const populateSelect = function(fighters){
@@ -79,6 +80,26 @@ const fighterProfile = function(fighter){
 
   return div;
 }
+
+const MostWins = function(fighters) {
+  const winDesc = _.sortBy(fighters, 'wins').reverse()
+  const winners = _.remove(winDesc, function(n){
+    if(n.wins > 0){
+      return n;
+    };
+  })
+  const top20 = _.take(winners, 20);
+  google.charts.setOnLoadCallback(drawTable, function(){
+    const winnerData = new google.visualization.DataTable();
+    data.addColumn('string', 'Name');
+    data.addColumn('number', 'Wins');
+    data.addRows([
+      
+    ])
+  });
+}
+
+
 
 const clearProfile = function(node){
   while (node.hasChildNodes()) {
