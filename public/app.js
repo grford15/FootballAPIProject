@@ -2,6 +2,7 @@ const app = function(){
   const url = 'http://ufc-data-api.ufc.com/api/v1/us/';
   const fighterURL = 'http://ufc-data-api.ufc.com/api/v1/us/fighters';
   makeRequest(fighterURL, requestComplete);
+  google.charts.load("current", {packages:["corechart"]});
 }
 
 const makeRequest = function(url, callback){
@@ -39,8 +40,26 @@ const getFighter = function(fighters){
   })
 }
 
+const fighterWinGraph = function(fighter){
+  const winData = google.visualization.arrayToDataTable([
+          [`${fighter.first_name} ${fighter.last_name}`, 'Record'],
+          ['Wins', fighter.wins],
+          ['Losses', fighter.losses],
+          ['Draws', fighter.draws]
+        ]);
+  const options = {
+    title: 'Fight Records'
+  }
+
+  const chart = new google.visualization.PieChart(document.getElementById('fighter-graph'));
+
+  chart.draw(winData, options);
+
+}
+
 const fighterProfile = function(fighter){
   const div = document.getElementById('fighter-profile')
+  clearProfile(div)
   const fighterName = document.createElement('h2')
   fighterName.innerText = `${fighter.first_name} ${fighter.last_name}`
   const weightClass = document.createElement('p')
@@ -49,8 +68,22 @@ const fighterProfile = function(fighter){
   profilePicture.src = fighter.thumbnail
   div.appendChild(fighterName)
   div.appendChild(weightClass)
+  if(fighter.title_holder){
+    const belt = document.createElement('img')
+    belt.src = 'https://www.ufcstore.eu/images/fill/800/800/32300'
+    belt.style = 'height:100px; width: 200px;'
+    weightClass.appendChild(belt);
+  }
   div.appendChild(profilePicture)
+  fighterWinGraph(fighter);
+
   return div;
+}
+
+const clearProfile = function(node){
+  while (node.hasChildNodes()) {
+    node.removeChild(node.lastChild);
+  }
 }
 
 window.addEventListener('load', app)
