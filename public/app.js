@@ -3,6 +3,7 @@ const app = function(){
   const fighterURL = 'http://ufc-data-api.ufc.com/api/v1/us/fighters';
   makeRequest(fighterURL, requestComplete);
   google.charts.load("current", {packages:["corechart"]});
+  google.charts.load('current', {'packages':['table']});
 }
 
 const makeRequest = function(url, callback){
@@ -88,17 +89,21 @@ const MostWins = function(fighters) {
       return n;
     };
   })
+
   const top20 = _.take(winners, 20);
-  google.charts.setOnLoadCallback(drawTable, function(){
-    const winnerData = new google.visualization.DataTable();
-    data.addColumn('string', 'Name');
-    data.addColumn('number', 'Wins');
-    data.addRows([
-      
-    ])
+  google.charts.setOnLoadCallback(top20, function(){
+    const winnersData = new google.visualization.DataTable();
+    winnersData.addColumn('string', 'Name');
+    winnersData.addColumn('number', 'Wins');
+    _.forEach(top20, function(fighter){
+      winnersData.addRows([
+            [fighter.first_name + " " + fighter.last_name,  fighter.wins]
+          ]);
+    })
+    const winnerTable = new google.visualization.Table(document.getElementById('win-table'));
+    table.draw(winnersData, {showRowNumber: true, width: '100%', height: '100%'});
   });
 }
-
 
 
 const clearProfile = function(node){
