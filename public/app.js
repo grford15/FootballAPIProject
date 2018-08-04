@@ -91,7 +91,7 @@ const MostWins = function(fighters) {
   })
 
   const top20 = _.take(winners, 20);
-  google.charts.setOnLoadCallback(top20, function(){
+  google.charts.setOnLoadCallback(function(){
     const winnersData = new google.visualization.DataTable();
     winnersData.addColumn('string', 'Name');
     winnersData.addColumn('number', 'Wins');
@@ -101,7 +101,7 @@ const MostWins = function(fighters) {
           ]);
     })
     const winnerTable = new google.visualization.Table(document.getElementById('win-table'));
-    table.draw(winnersData, {showRowNumber: true, width: '100%', height: '100%'});
+    winnerTable.draw(winnersData, {showRowNumber: true, width: '100%', height: '100%'});
   });
 }
 
