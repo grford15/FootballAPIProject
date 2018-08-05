@@ -21,7 +21,9 @@ const requestComplete = function(response){
   const sortedFigthers = _.sortBy(activeFighters, 'last_name')
   populateSelect(sortedFigthers);
   getFighter(sortedFigthers);
+  beltHolders(activeFighters);
   MostWins(activeFighters);
+
 }
 
 const populateSelect = function(fighters){
@@ -103,6 +105,34 @@ const MostWins = function(fighters) {
     const winnerTable = new google.visualization.Table(document.getElementById('win-table'));
     winnerTable.draw(winnersData, {showRowNumber: true, width: '100%', height: '100%'});
   });
+}
+
+const beltHolders = function(fighters){
+  const champions = _.filter(fighters, {'title_holder': true});
+  let flyweight = _.find(champions, {'weight_class': 'Flyweight'});
+  let bantamweight = _.find(champions, {'weight_class': 'Bantamweight'});
+  let featherweight = _.find(champions, {'weight_class': 'Featherweight'});
+  let lightweight = _.find(champions, {'weight_class': 'Lightweight'});
+  let welterweight = _.find(champions, {'weight_class': 'Welterweight'});
+  let middleweight = _.find(champions, {'weight_class': 'Middleweight'});
+  let lightHeavyWeight = _.find(champions, {'weight_class': 'Light_Heavyweight'});
+  google.charts.setOnLoadCallback(function(){
+    const champData = new google.visualization.DataTable();
+    champData.addColumn('string', 'Weight Class');
+    champData.addColumn('string', 'Name');
+    champData.addRows([
+      ['Flyweight', `${flyweight.first_name} ${flyweight.last_name}`],
+      ['Bantamweight', `${bantamweight.first_name} ${bantamweight.last_name}`],
+      ['Featherweight', `${featherweight.first_name} ${featherweight.last_name}`],
+      ['Lightweight', `${lightweight.first_name} ${lightweight.last_name}`],
+      ['Welterweight', `${welterweight.first_name} ${welterweight.last_name}`],
+      ['Middleweight', `${middleweight.first_name} ${middleweight.last_name}`],
+      ['Light-Heavyweight', `${lightHeavyWeight.first_name} ${lightHeavyWeight.last_name}`],
+      ['Heavyweight', `${lightHeavyWeight.first_name} ${lightHeavyWeight.last_name}`]
+    ])
+    const champTable = new google.visualization.Table(document.getElementById('champ-table'));
+    champTable.draw(champData, {showRowNumber: true, width: '100%', height: '100%'});
+  })
 }
 
 
