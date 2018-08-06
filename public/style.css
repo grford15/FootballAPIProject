@@ -1,65 +1,65 @@
 body{
-  background-color: #d9d9d9;
+  background-color: #99b3ff;
 }
 
 .heading{
-  background-color: #d9d9d9;
-  padding-top: 15px;
-  border: 1px solid black;
+
 }
 
 .conatiner{
   display: flex;
-  border: 1px solid black;
 }
 
 h1{
   font-family: 'Gruppo', cursive;
   font-size: 2.5em;
   font-weight: bold;
-  border: 1px solid black;
 }
 
 label{
   font-family: 'Gruppo', cursive;
-  font-size: 2em;
+  font-size: 2.4em;
   margin: 5px 5px;
-  border: 1px solid black;
 }
 
 #fighter-menu{
   font-family: 'Nanum Gothic', sans-serif;
   font-size: .9em;
   margin: 10px 10px;
-  border: 1px solid black;
 }
 
 #fighter-profile {
-  border: 1px solid black;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+
+#fighter-profile > img{
+  height: 150px;
+  width: 150px;
 }
 
 #fighter-graph {
-  border: 1px solid black;
+
 }
 
 .fighterDiv {
   justify-content: space-between;
   font-family: 'Gruppo', cursive;
-  border: 1px solid black;
 }
 
 .fighterDiv h2 {
   font-size: 2em;
-  border: 1px solid black;
+
 }
 
 .fighterDiv p {
   font-size: 1.5em;
-  border: 1px solid black;
+
 }
 
 
 .fighter-choice {
-  border: 1px solid black;
+
   display: flex;
 }

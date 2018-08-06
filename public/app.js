@@ -75,7 +75,7 @@ const fighterProfile = function(fighter){
   if(fighter.title_holder){
     const belt = document.createElement('img')
     belt.src = 'https://www.ufcstore.eu/images/fill/800/800/32300'
-    belt.style = 'height:100px; width: 200px;'
+    belt.style = 'height:100px; width: 150px;'
     weightClass.appendChild(belt);
   }
   div.appendChild(profilePicture)
